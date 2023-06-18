@@ -7,10 +7,8 @@ namespace AmpulhetaCorrigido
     {
         static void Main(string[] args)
         {
-            // Criando uma lista de caixas
             var caixas = new List<Caixa>();
 
-            // Criando a primeira caixa e adicionando ampulhetas a ela
             var caixa1 = new Caixa
             {
                 CodigoCaixa = 1,
@@ -29,7 +27,6 @@ namespace AmpulhetaCorrigido
             Console.WriteLine("\nAmpulhetas da Caixa 1:");
             ImprimirAmpulhetas(caixa1.Ampulheta);
 
-            // Criando a segunda caixa e adicionando ampulhetas a ela
             var caixa2 = new Caixa
             {
                 CodigoCaixa = 2,
@@ -48,7 +45,7 @@ namespace AmpulhetaCorrigido
             Console.WriteLine("\nAmpulhetas da Caixa 2:");
             ImprimirAmpulhetas(caixa2.Ampulheta);
 
-            // Separando as ampulhetas por tamanho usando o método AjustarAmpulhetaPorTamanho
+            // Separando as ampulhetas por tamanho usando o método SepararAmpulhetaPorTamanho
             var pequenas = SepararAmpulhetaPorTamanho("p", caixas);
             var medias = SepararAmpulhetaPorTamanho("m", caixas);
             var grandes = SepararAmpulhetaPorTamanho("g", caixas);
