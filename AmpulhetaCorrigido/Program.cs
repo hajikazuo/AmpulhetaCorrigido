@@ -1,76 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AmpulhetaCorrigido
 {
     public class Program
     {
-        private static readonly List<Caixa> CaixaManager = new List<Caixa>();
         static void Main(string[] args)
         {
+            // Criando uma lista de caixas
+            var caixas = new List<Caixa>();
+
+            // Criando a primeira caixa e adicionando ampulhetas a ela
             var caixa1 = new Caixa
             {
                 CodigoCaixa = 1,
                 Ampulheta = new List<Ampulheta>
                 {
-                new Ampulheta {Size = 1},
-                new Ampulheta {Size = 2},
-                new Ampulheta {Size = 2},
-                new Ampulheta {Size = 3},
-                new Ampulheta {Size = 1}
+                    new Ampulheta {Size = 1},
+                    new Ampulheta {Size = 2},
+                    new Ampulheta {Size = 2},
+                    new Ampulheta {Size = 3},
+                    new Ampulheta {Size = 1}
                 }
-
             };
 
+            caixas.Add(caixa1);
+
+            Console.WriteLine("\nAmpulhetas da Caixa 1:");
+            ImprimirAmpulhetas(caixa1.Ampulheta);
+
+            // Criando a segunda caixa e adicionando ampulhetas a ela
             var caixa2 = new Caixa
             {
                 CodigoCaixa = 2,
                 Ampulheta = new List<Ampulheta>
-                {   
-                new Ampulheta {Size = 1},
-                new Ampulheta {Size = 3},
-                new Ampulheta {Size = 2},
-                new Ampulheta {Size = 3},
-                new Ampulheta {Size = 1}
+                {
+                    new Ampulheta {Size = 1},
+                    new Ampulheta {Size = 2},
+                    new Ampulheta {Size = 2},
+                    new Ampulheta {Size = 3},
+                    new Ampulheta {Size = 1}
                 }
             };
 
-            CaixaManager.Add(caixa1);
-            CaixaManager.Add(caixa2);
+            caixas.Add(caixa2);
 
-            var pequenas = CaixaAjustBySize("p", CaixaManager);
-            var medias = CaixaAjustBySize("m", CaixaManager);
-            var grandes = CaixaAjustBySize("g", CaixaManager);
+            Console.WriteLine("\nAmpulhetas da Caixa 2:");
+            ImprimirAmpulhetas(caixa2.Ampulheta);
 
-            Console.WriteLine("Pequenas:");
-            foreach (var amp in pequenas)
-            {
-                Console.WriteLine(amp.Size);
-            }
+            // Separando as ampulhetas por tamanho usando o método AjustarAmpulhetaPorTamanho
+            var pequenas = SepararAmpulhetaPorTamanho("p", caixas);
+            var medias = SepararAmpulhetaPorTamanho("m", caixas);
+            var grandes = SepararAmpulhetaPorTamanho("g", caixas);
 
-            Console.WriteLine("Médias:");
-            foreach (var amp in medias)
-            {
-                Console.WriteLine(amp.Size);
-            }
+            // Imprimindo as ampulhetas separadas por tamanho
+            Console.WriteLine("\n---------------------------------------------------------\nSeparação das ampulhetas por tamanho: ");
 
-            Console.WriteLine("Grandes:");
-            foreach (var amp in grandes)
-            {
-                Console.WriteLine(amp.Size);
-            }
+            Console.WriteLine("\nPequenas:");
+            ImprimirAmpulhetas(pequenas);
+
+            Console.WriteLine("\nMédias:");
+            ImprimirAmpulhetas(medias);
+
+            Console.WriteLine("\nGrandes:");
+            ImprimirAmpulhetas(grandes);
 
             Console.ReadKey();
         }
 
-        private static List<Ampulheta> CaixaAjustBySize(string tipoAjuste, List<Caixa> caixas)
+        // Método para imprimir as ampulhetas
+        private static void ImprimirAmpulhetas(List<Ampulheta> ampulhetas)
+        {
+            foreach (var ampulheta in ampulhetas)
+            {
+                Console.WriteLine($"Tamanho: {ampulheta.Size}");
+            }
+        }
+
+        // Método para separar as ampulhetas por tamanho
+        private static List<Ampulheta> SepararAmpulhetaPorTamanho(string tamanho, List<Caixa> caixas)
         {
             var ampulhetas = new List<Ampulheta>();
 
-            switch (tipoAjuste)
+            switch (tamanho)
             {
                 case "p":
                     foreach (var item in caixas)
@@ -114,5 +126,3 @@ namespace AmpulhetaCorrigido
         }
     }
 }
-    
-

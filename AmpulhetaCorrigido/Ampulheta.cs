@@ -9,5 +9,6 @@ namespace AmpulhetaCorrigido
     public class Ampulheta
     {
         public int Size { get; set; }
+
     }
 }
